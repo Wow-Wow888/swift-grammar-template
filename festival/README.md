@@ -14,11 +14,12 @@
 
 ## 画面
 
-![画面1](screen1.png)
-![画面2](screen2.png)
-![画面4](screen4.png)
-![画面3](screen3.png)
-![画面5](screen5.png)
+- ![画面1](screen1.png)
+- ![画面2](screen2.png)
+- ![画面3](screen3.png)
+- ![画面4](screen4.png)
+- ![画面5](screen5.png)
+
 
 ## 使った文法・技術
 
