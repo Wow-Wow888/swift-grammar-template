@@ -32,13 +32,13 @@ func checkAnswer(_ input: String) -> Bool {
 }
 ```
 
-何をしているか：
+**何をしているか：**
 入力された文字が正解かどうかを確かめる関数です。スペースや大文字を整えてから正解リストと比べ、合っていれば true、違っていれば false を返します。
 
-なぜこう書くのか：
+**なぜこう書くのか：**
 そのまま比べるのではなく、trimmingCharacters と lowercased() を使っているのは、「Japan」と「japan」の違いや、間違えて入れたスペースで不正解にならないようにするためです。
 
-もしこう書かなかったら：
+**もしこう書かなかったら：**
 整える処理を消して、語尾にスペースを入れた「japan 」と入力して試しました。正解なのに不正解になってしまったので、元に戻しました。
 
 ---
@@ -46,14 +46,23 @@ func checkAnswer(_ input: String) -> Bool {
 ## 箇所2：（見出し）
 
 ```swift
-// コードを貼る
+func text(for key: String) -> String {
+    switch selectedLanguage {
+    case .japanese: return japaneseDictionary[key] ?? key
+    case .english: return englishDictionary[key] ?? key
+    case .myanmar: return myanmarDictionary[key] ?? key
+    }
+}
 ```
 
 **何をしているか：**
+選択されている言語に合わせて、辞書から対応するテキストを取り出して返す関数です。
 
 **なぜこう書くのか：**
+if をいくつも書くのではなく switch を使っているのは、言語の切り替え処理をシンプルで読みやすく整理できるからです。
 
 **もしこう書かなかったら：**
+case .japanese: の返し we を return key に書き換えてアプリを実行しました。日本語表示のとき、辞書から翻訳されずに「app_title」や「start」などのキー名がそのまま画面に表示されました。確認後に元に戻しました。
 
 ---
 
