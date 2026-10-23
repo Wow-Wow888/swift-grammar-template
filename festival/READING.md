@@ -13,26 +13,33 @@
 ## 箇所1：（例：品名を追加するボタンの処理）
 
 ```swift
-    func checkAnswer(_ input: String) -> Bool {
-        guard let question = currentQuestion, isPlaying else { return false }
-        
-        let validAnswers = question.allAnswers
-        let formattedInput = input.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-        
-        let isCorrect = validAnswers.contains { answer in
-            answer.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() == formattedInput
-        }
+func checkAnswer(_ input: String) -> Bool {
+    guard let question = currentQuestion, isPlaying else { return false }
+    
+    let validAnswers = question.allAnswers
+    let formattedInput = input.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+    
+    let isCorrect = validAnswers.contains { answer in
+        answer.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() == formattedInput
+    }
+    
+    if isCorrect {
+        isCorrectAnswer = true
+        correctCount += 1
+        return true
+    }
+    return false
+}
 ```
 
-**何をしているか：**
-この関数は、プレイヤーの回答が正しいかどうかを確認します。まず、問題が存在し、ゲームが進行中であることを確認します。次に、正解のリストを取得し、大文字・小文字や余分なスペースを無視して、プレイヤーの回答と比較します。最後に、回答が正しければ true、間違っていれば false を返します。
+何をしているか：
+入力された文字が正解かどうかを確かめる関数です。スペースや大文字を整えてから正解リストと比べ、合っていれば true、違っていれば false を返します。
 
-**なぜこう書くのか：**
-この関数を使うことで、プレイヤーの回答が正しいかどうかを自動で判定できます。余分なスペースや大文字・小文字の違いを無視するため、正しい回答を入力しているのに、不正解と判定されることを防げます。これにより、プレイヤーが快適にクイズを楽しめるようになります。
+なぜこう書くのか：
+そのまま比べるのではなく、trimmingCharacters と lowercased() を使っているのは、「Japan」と「japan」の違いや、間違えて入れたスペースで不正解にならないようにするためです。
 
-**もしこう書かなかったら：**
-大文字と小文字の違いや余分なスペースがあるだけで、不正解になる可能性があります。
-
+もしこう書かなかったら：
+整える処理を消して、語尾にスペースを入れた「japan 」と入力して試しました。正解なのに不正解になってしまったので、元に戻しました。
 ---
 
 ## 箇所2：（見出し）
