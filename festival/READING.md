@@ -69,14 +69,32 @@ case .japanese: の返し we を return key に書き換えてアプリを実行
 ## 箇所3：（見出し）
 
 ```swift
-// コードを貼る
+func setupAndStartGame(category: GameCategory) {
+    stopGame()
+    
+    self.currentCategory = category
+    let filtered = masterQuestionBank.filter { $0.category == category }
+    self.activeQuestions = filtered.shuffled()
+    
+    self.currentIndex = 0
+    self.totalScore = 0
+    self.correctCount = 0
+    self.globalTimeRemaining = 60
+    self.isGameOver = false
+    
+    startGlobalTimer()
+    startQuestionRound()
+}
 ```
 
 **何をしているか：**
+プレイヤーが選んだゲームモード（学校・世界・ハロウィンなど）の質問だけを準備し、順番をランダム（シャッフル）にして、タイマーやスコアを初期化してゲームをスタートさせる関数です。
 
 **なぜこう書くのか：**
+filter を使うことで選択されたカテゴリの問題だけを抽出し、さらに shuffled() を使うことで遊ぶたびに問題の順番が変わって何度でも楽しめるようにするためです。
 
 **もしこう書かなかったら：**
+self.activeQuestions = filtered だけにして試しました。ゲームを何度やり直しても毎回まったく同じ順番で問題が出題されてしまい、ゲーム性が下がってしまったので元に戻しました。
 
 ---
 
