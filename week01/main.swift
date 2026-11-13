@@ -1,6 +1,3 @@
-// week01 の演習を終えた main.swift を、このファイルに Upload files で上書きしてください。
-// 教材コードは swift-grammar-code の week01/main.swift を Raw 表示から全選択コピーして Xcode に貼ります。
-
 // week01: 型と制御構文の再確認、配列・辞書・範囲
 // このプログラムは、1CM1 の成績を並べ替えたり、合格した人を数えたり、
 // 名前から点数を引いたりします。
@@ -127,6 +124,11 @@ for (name, score) in scoreOf {
 
 var passers: [String] = []
 // ここに書く
+for i in 0..<names.count {
+    if scores[i] >= 60 {
+        passers.append(names[i])
+    }
+}
 
 check("演習1 合格者は4名", passers.count == 4)
 check("演習1 並び順は names のまま", passers == ["電子太郎", "山田一郎", "佐藤みなみ", "グエン・アン"])
@@ -135,6 +137,11 @@ check("演習1 並び順は names のまま", passers == ["電子太郎", "山�
 
 var highScorers = 0
 // ここに書く
+for (_, score) in scoreOf {
+    if score >= 80 {
+        highScorers += 1
+    }
+}
 
 check("演習2 80点以上は2名", highScorers == 2)
 
@@ -144,6 +151,10 @@ check("演習2 80点以上は2名", highScorers == 2)
 var total = 0
 var average = 0.0
 // ここに書く
+for score in scores {
+    total += score
+}
+average = Double(total) / Double(scores.count)
 
 check("演習3 合計は360", total == 360)
 check("演習3 平均は72.0", average == 72.0)
