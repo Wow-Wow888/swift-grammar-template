@@ -1,5 +1,3 @@
-// week02 の演習を終えた main.swift を、このファイルに Upload files で上書きしてください。
-// 教材コードは swift-grammar-code の week02/main.swift を Raw 表示から全選択コピーして Xcode に貼ります。
 // week02: Optional
 // このプログラムは、week01 で作った名簿（名前から点数を引く辞書）を使って、
 // 名簿に載っている人と載っていない人を、落ちないように扱います。
