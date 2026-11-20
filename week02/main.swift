@@ -156,3 +156,72 @@ check("演習3 鈴木は名簿にありません", judge(name: "鈴木", in: sco
 //  連鎖して呼ぶ         if (s != null) s.length();        s?.count
 //  標準ライブラリの型    Optional<String>（Java 8 以降）     T? は言語そのものの機能
 //  取り違えたとき        NullPointerException（実行時）      コンパイル時にエラー。! を書いたときだけ実行時に落ちる
+
+//STEP 2
+let taro = scoreOf["電子太郎"]
+print(type(of: taro))
+
+//STEP3
+let suzuki = scoreOf["鈴木"]
+print(suzuki == nil)
+
+//STEP 4
+//print (taro + 10) //コンパイルエラー
+
+//STEP5
+
+let name = "鈴木"
+if let score = scoreOf[name] {
+    print("\(name)は \(score) 点です")
+} else {
+    print("\(name)は名簿にありません")
+}
+
+//予想1
+
+if let score = scoreOf["山田一郎"] {
+    print(score + 5)
+} else {
+    print("いません")
+}
+
+//予想2
+
+if let score = scoreOf["田中"] {
+    print(score + 5)
+} else {
+    print("いません")
+}
+
+//予想3
+
+let hanako = scoreOf["電子花子"]
+print(hanako == nil)
+
+
+//練習1
+if let score = scoreOf["山田一郎"] {
+    print("山田一郎は \(score) 点です")
+} else {
+    print("山田一郎は名簿にありません")
+}
+
+//練習2
+let who = "田中"
+if let score = scoreOf[who] {
+    print("\(who)は \(score) 点です")
+} else {
+    print("\(who)は名簿にありません")
+}
+
+//練習3
+let student = "電子花子"
+if let score = scoreOf[student] {
+    if score >= 60 {
+        print("合格です")
+    } else {
+        print("再テストです")
+    }
+} else {
+    print("名簿にありません")
+}
