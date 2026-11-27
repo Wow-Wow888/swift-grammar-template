@@ -113,8 +113,8 @@ print(describe(name: "鈴木", in: scoreOf))
 // 演習1: ?? を使って、山田一郎と鈴木の点数を取り出してください
 //        名簿に無い人は 0 点として扱います
 
-var yamadaScore = -1
-var suzukiPoint = -1
+var yamadaScore = scoreOf["山田一郎"] ?? 0
+var suzukiPoint = scoreOf["鈴木"] ?? 0
 // ここに書く
 
 check("演習1 山田一郎は91点", yamadaScore == 91)
@@ -127,6 +127,12 @@ let wanted = ["電子太郎", "鈴木", "グエン・アン", "田中"]
 var found: [String] = []
 var foundTotal = 0
 // ここに書く
+for visitor in wanted {
+    if let score = scoreOf[visitor] {
+        found.append(visitor)
+        foundTotal += score
+    }
+}
 
 check("演習2 見つかったのは2名", found.count == 2)
 check("演習2 並び順は wanted のまま", found == ["電子太郎", "グエン・アン"])
@@ -225,3 +231,43 @@ if let score = scoreOf[student] {
 } else {
     print("名簿にありません")
 }
+
+
+// --- 第15回 練習 ---
+let friend = "佐藤みなみ"
+if let score = scoreOf[friend] {
+    print("\(friend)は \(score) 点です")
+} else {
+    print("\(friend)は名簿にありません")
+}
+
+let guest = "高橋"
+if let score = scoreOf[guest] {
+    print("\(guest)は \(score) 点です")
+} else {
+    print("\(guest)は名簿にありません")
+}
+
+let member = "グエン・アン"
+if let score = scoreOf[member] {
+    print("\(member)は \(score) 点です")
+} else {
+    print("\(member)は名簿にありません")
+}
+
+let guestScore = scoreOf["鈴木"] ?? 0
+print(guestScore)
+print(type(of: guestScore))
+
+let taroPoint = scoreOf["電子太郎"] ?? 0
+print(taroPoint)
+
+let visitors = ["山田一郎", "高橋", "電子花子"]
+var visitorTotal = 0
+for visitor in visitors {
+    if let score = scoreOf[visitor] {
+        print("\(visitor)は \(score) 点です")
+        visitorTotal += score
+    }
+}
+print(visitorTotal)
